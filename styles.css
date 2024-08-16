@@ -6,55 +6,35 @@ body {
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
     background-attachment: fixed; /* Hace que la imagen de fondo se quede quieta */
-    color: white; /* Cambia el color del texto a blanco para que sea legible */
-/* Remove the extra closing curly brace */
+    position: relative; /* Necesario para la superposición */
+}
 
 h1 {
     margin-bottom: 20px;
-    color: rgb(250, 130, 130); /* Color del título */
-/* Remove the extra closing curly brace */
+}
 
 table {
     width: 100%;
     border-collapse: collapse;
-}
     margin: 0 auto; /* Centra la tabla horizontalmente en la página */
 }
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para mejorar la legibilidad */
 
 th, td {
+    font-weight: bold; /* Hace que el texto sea en negrita */
     padding: 8px;
     text-align: center; /* Centra el texto en las celdas */
     border-bottom: 1px solid #ddd;
-    color: white; /* Cambia el color del texto en la tabla a blanco para mejor visibilidad */
 }
 
-th {
-    background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente para los encabezados */
-    color: black; /* Cambia el color de los encabezados a negro para mayor contraste */
-}
 
-tr:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Cambia el color de fondo al pasar el cursor */
-}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto; /* Centra la tabla horizontalmente en la página */
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para mejorar la legibilidad */
-}
-
-th, td {
-    padding: 8px;
-    text-align: center; /* Centra el texto en las celdas */
-    border-bottom: 1px solid #ddd;
-    color: white; /* Cambia el color del texto en la tabla a blanco para mejor visibilidad */
-}
-
-th {
-    background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente para los encabezados */
-    color: black; /* Cambia el color de los encabezados a negro para mayor contraste */
-}
-
-tr:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Cambia el color de fondo al pasar el cursor */
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Superposición blanca semi-transparente */
+    z-index: -1; /* Coloca la superposición detrás del contenido */
 }
