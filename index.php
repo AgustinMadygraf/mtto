@@ -13,7 +13,6 @@
             <tr>
                 <th>ID</th>
                 <th>TEMA</th>
-                <TH>MEDIOS TECNICOS</TH>
                 <th>CRITERIO</th>
                 <th>0</th>
                 <th>1</th>
@@ -24,10 +23,10 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Los datos se cargarán aquí -->
+            <?php include 'load_data.php'; ?>
         </tbody>
     </table>
 
-    <script src="script.js"></script>
+    <script src="script_2.js"></script>
 </body>
 </html>

@@ -68,7 +68,6 @@ N°,Criterio,0,1,2,3
 67,¿El sistema de compras es ágil?,Demasiado lento.,Lento.,"Sí, pero es mejorable.",Sistema muy ágil.
 68,¿Existen indicadores para evaluarla eficacia del sistema de compras?,No.,Son insuficientes.,"Sí, pero es mejorable.","Sí, y resultan adecuados."
 69,¿Los materiales siempre alcanzan la calidad que se necesita?,No.,Son insuficientes.,"Sí, pero es mejorable.","Sí, y resultan adecuados."
-N°,Criterio,0,1,2,3
 70,La disponibilidad media de los equipos significativos es la adecuada.,Mala.,Se aleja del óptimo.,Pequeñas desviaciones.,Buena.
 71,La evolución de la disponibilidad esbuena.,Está disminuyendo,Tendencia a disminuir.,Está estabilizada,Está aumentando.
 72,Tiempo medio entre fallos en equipos significativos.,Malo.,Se aleja del óptimo.,Pequeñas desviaciones.,Buena.
