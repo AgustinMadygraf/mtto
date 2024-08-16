@@ -1,6 +1,7 @@
 <?php
 require '../vendor/autoload.php'; // Cargar Composer y phpdotenv
-
+require 'DatabaseConnection.php'; // Incluir la clase DatabaseConnection
+require 'DataLoader.php'; // Incluir la clase DataLoader
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -25,8 +26,9 @@ $log->debug('Intentando conectar a la base de datos', [
     'database' => $database
 ]);
 
-// Crear la conexión
-$conn = new mysqli($servername, $username, $password, $database);
+// Crear la conexión usando la clase DatabaseConnection
+$dbConnection = new DatabaseConnection($servername, $username, $password, $database);
+$conn = $dbConnection->getConnection();
 
 // Verificar la conexión
 if ($conn->connect_error) {
@@ -36,40 +38,10 @@ if ($conn->connect_error) {
     $log->info('Conexión exitosa a la base de datos');
 }
 
-// Consulta SQL para obtener los datos de la tabla 'preguntas'
-$sql = "SELECT ID, tema, criterio, rta_0, rta_1, rta_2, rta_3 FROM preguntas";
-$log->debug('Ejecutando consulta SQL: ' . $sql);
+// Crear una instancia de DataLoader y cargar los datos
+$dataLoader = new DataLoader($conn);
+$dataLoader->loadData();
 
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    $log->info('Se encontraron ' . $result->num_rows . ' filas en la tabla preguntas.');
-    // Salida de los datos en cada fila
-    while ($row = $result->fetch_assoc()) {
-        $log->debug('Procesando fila: ', $row);
-        echo "<tr>
-                <td>" . $row["ID"] . "</td>
-                <td>" . $row["tema"] . "</td>
-                <td>" . $row["criterio"] . "</td>
-                <td>
-                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='0'>" . $row["rta_0"] . "
-                </td>
-                <td>
-                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='1'>" . $row["rta_1"] . "
-                </td>
-                <td>
-                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='2'>" . $row["rta_2"] . "
-                </td>
-                <td>
-                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='3'>" . $row["rta_3"] . "
-                </td>
-            </tr>";
-    }
-} else {
-    $log->warning('No se encontraron datos en la tabla preguntas.');
-    echo "<tr><td colspan='7'>No hay datos disponibles</td></tr>";
-}
-
-$conn->close();
+$dbConnection->closeConnection();
 $log->info('Conexión a la base de datos cerrada.');
 ?>
