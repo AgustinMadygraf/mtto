@@ -24,10 +24,18 @@ if ($result->num_rows > 0) {
                 <td>" . $row["ID"] . "</td>
                 <td>" . $row["tema"] . "</td>
                 <td>" . $row["criterio"] . "</td>
-                <td>" . $row["rta_0"] . "</td>
-                <td>" . $row["rta_1"] . "</td>
-                <td>" . $row["rta_2"] . "</td>
-                <td>" . $row["rta_3"] . "</td>
+                <td>
+                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='0'>" . $row["rta_0"] . "
+                </td>
+                <td>
+                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='1'>" . $row["rta_1"] . "
+                </td>
+                <td>
+                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='2'>" . $row["rta_2"] . "
+                </td>
+                <td>
+                    <input type='radio' name='respuesta_" . $row["ID"] . "' value='3'>" . $row["rta_3"] . "
+                </td>
             </tr>";
     }
 } else {
