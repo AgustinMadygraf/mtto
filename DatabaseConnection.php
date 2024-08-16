@@ -1,11 +1,26 @@
 <?php
+require 'DatabaseConnectionInterface.php';
 
-class DatabaseConnection {
+class DatabaseConnection implements DatabaseConnectionInterface {
+    private $servername;
+    private $username;
+    private $password;
+    private $database;
     private $conn;
 
-    public function __construct($host, $username, $password, $database) {
-        $this->conn = new mysqli($host, $username, $password, $database);
+    public function __construct($servername, $username, $password, $database) {
+        $this->servername = $servername;
+        $this->username = $username;
+        $this->password = $password;
+        $this->database = $database;
+        $this->connect();
+    }
 
+    public function connect() {
+        // Crear la conexión
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->database);
+
+        // Verificar la conexión
         if ($this->conn->connect_error) {
             die("Conexión fallida: " . $this->conn->connect_error);
         }
@@ -16,7 +31,9 @@ class DatabaseConnection {
     }
 
     public function closeConnection() {
-        $this->conn->close();
+        if ($this->conn) {
+            $this->conn->close();
+        }
     }
 }
 ?>

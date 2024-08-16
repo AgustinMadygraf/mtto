@@ -26,7 +26,7 @@ $log->debug('Intentando conectar a la base de datos', [
     'database' => $database
 ]);
 
-// Crear la conexión usando la clase DatabaseConnection
+// Crear la conexión usando la interfaz DatabaseConnectionInterface
 $dbConnection = new DatabaseConnection($servername, $username, $password, $database);
 $conn = $dbConnection->getConnection();
 
