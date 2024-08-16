@@ -5,15 +5,38 @@ body {
     background-size: cover; /* Hace que la imagen cubra toda la página */
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Hace que la imagen de fondo se quede quieta */
     color: white; /* Cambia el color del texto a blanco para que sea legible */
-}
+/* Remove the extra closing curly brace */
 
 h1 {
     margin-bottom: 20px;
-    color: rgb(250, 130, 130); /* Añade un espacio debajo del título */
-}
+    color: rgb(250, 130, 130); /* Color del título */
+/* Remove the extra closing curly brace */
 
 table {
+    width: 100%;
+    border-collapse: collapse;
+}
+    margin: 0 auto; /* Centra la tabla horizontalmente en la página */
+}
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente para mejorar la legibilidad */
+
+th, td {
+    padding: 8px;
+    text-align: center; /* Centra el texto en las celdas */
+    border-bottom: 1px solid #ddd;
+    color: white; /* Cambia el color del texto en la tabla a blanco para mejor visibilidad */
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente para los encabezados */
+    color: black; /* Cambia el color de los encabezados a negro para mayor contraste */
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Cambia el color de fondo al pasar el cursor */
+}
     width: 100%;
     border-collapse: collapse;
     margin: 0 auto; /* Centra la tabla horizontalmente en la página */
@@ -24,11 +47,12 @@ th, td {
     padding: 8px;
     text-align: center; /* Centra el texto en las celdas */
     border-bottom: 1px solid #ddd;
-    color: rgb(250, 130, 130); /* Asegura que el texto en la tabla sea blanco */
+    color: white; /* Cambia el color del texto en la tabla a blanco para mejor visibilidad */
 }
 
 th {
     background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente para los encabezados */
+    color: black; /* Cambia el color de los encabezados a negro para mayor contraste */
 }
 
 tr:hover {
