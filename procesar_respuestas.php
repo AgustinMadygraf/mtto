@@ -1,9 +1,15 @@
 <?php
-// Conexión a la base de datos MySQL
-$servername = "10.176.61.55";
-$username = "root";
-$password = "12345678";
-$database = "esp32";
+require '../vendor/autoload.php'; // Cargar Composer y phpdotenv
+
+// Cargar el archivo .env
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+// Conexión a la base de datos MySQL usando las variables de entorno
+$servername = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USERNAME'];
+$password = $_ENV['DB_PASSWORD'];
+$database = $_ENV['DB_DATABASE'];
 
 // Crear la conexión
 $conn = new mysqli($servername, $username, $password, $database);
@@ -19,14 +25,18 @@ foreach ($_POST as $pregunta_id => $respuesta) {
     $id = str_replace('respuesta_', '', $pregunta_id);
     $respuesta_seleccionada = intval($respuesta);
 
-    // Aquí puedes guardar la respuesta en la base de datos
-    $sql = "INSERT INTO respuestas_usuario (pregunta_id, respuesta) VALUES ($id, $respuesta_seleccionada)";
-    if ($conn->query($sql) === TRUE) {
+    // Guardar la respuesta en la base de datos
+    $sql = "INSERT INTO respuestas_usuario (pregunta_id, respuesta) VALUES (?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ii", $id, $respuesta_seleccionada);
+
+    if ($stmt->execute() === TRUE) {
         echo "Respuesta para pregunta ID $id guardada correctamente.<br>";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error . "<br>";
     }
 }
 
+$stmt->close();
 $conn->close();
 ?>
