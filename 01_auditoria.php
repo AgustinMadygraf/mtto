@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Auditoria Interna Mantenimiento</h1>
-    <form action="procesar_respuestas.php" method="POST">
+    <form action="procesar_respuestas.php" method="GET">
         <table id="data-table">
             <thead>
                 <tr>

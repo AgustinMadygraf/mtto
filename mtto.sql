@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 20-08-2024 a las 22:52:38
+-- Tiempo de generación: 20-08-2024 a las 23:06:09
 -- Versión del servidor: 8.0.17
 -- Versión de PHP: 7.4.0
 
@@ -144,6 +144,19 @@ INSERT INTO `preguntas` (`ID`, `tema`, `criterio`, `rta_0`, `rta_1`, `rta_2`, `r
 (99, 'Medio ambiente', '¿Este plan se lleva a cabo correctamente?', 'No, nunca.', 'A veces.', 'Casi siempre', 'Siempre.'),
 (100, 'Medio ambiente', 'El personal está mentalizado y actúa de acuerdo con el Plan Medioambiental?', 'No.', 'Le dan poca importancia.', 'Sí, aunque aveces no.', 'Siempre.');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `respuestas_usuario`
+--
+
+CREATE TABLE `respuestas_usuario` (
+  `id` int(11) NOT NULL,
+  `pregunta_id` int(11) NOT NULL,
+  `respuesta` int(11) NOT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 --
 -- Índices para tablas volcadas
 --
@@ -155,6 +168,13 @@ ALTER TABLE `preguntas`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indices de la tabla `respuestas_usuario`
+--
+ALTER TABLE `respuestas_usuario`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `pregunta_id` (`pregunta_id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -163,6 +183,22 @@ ALTER TABLE `preguntas`
 --
 ALTER TABLE `preguntas`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas_usuario`
+--
+ALTER TABLE `respuestas_usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `respuestas_usuario`
+--
+ALTER TABLE `respuestas_usuario`
+  ADD CONSTRAINT `respuestas_usuario_ibfk_1` FOREIGN KEY (`pregunta_id`) REFERENCES `preguntas` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
