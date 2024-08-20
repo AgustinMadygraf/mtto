@@ -27,6 +27,5 @@
         </table>
         <input type="submit" value="Enviar">
     </form>
-    <script src="script_2.js"></script>
 </body>
 </html>
